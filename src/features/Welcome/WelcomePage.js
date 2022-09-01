@@ -6,30 +6,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { AppBackground } from '../../shared/components/AppBackground';
 import MainContainer from '../../shared/components/MainContainer';
 
 const WelcomePage = () => {
   return (
     <MainContainer>
-      <ImageBackground
-        source={require('../../../assets/img/bg-1.jpg')}
-        resizeMode="cover"
-        style={styles.background}
+      <AppBackground
+        style={{
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
+        }}
       >
         <LottieView
           autoPlay
           source={require('../../../assets/img/animation-message.json')}
-        //   style={styles.animation}
+          //   style={styles.animation}
         />
 
         <View style={styles.titleContainer}>
           <Text style={styles.title}>POS System</Text>
           <Text style={styles.subTitle}>Simple Point If Sales</Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={()=>{}}>
+        <TouchableOpacity style={styles.button} onPress={() => {}}>
           <Text style={styles.textButton}>LOGIN</Text>
         </TouchableOpacity>
-      </ImageBackground>
+      </AppBackground>
     </MainContainer>
   );
 };
@@ -39,11 +41,6 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     alignItems: 'center',
-  },
-  background: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
   },
   titleContainer: {
     alignItems: 'center',

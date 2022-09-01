@@ -6,7 +6,7 @@ const pallete = {
 };
 
 export const theme = {
-  background: require('../../../assets/img/bg.jpg'),
+  background: require('../../assets/img/bg-1.jpg'),
   color: {
     foreground: pallete.grey,
     primary: pallete.orange,

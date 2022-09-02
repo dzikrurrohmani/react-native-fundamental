@@ -4,7 +4,7 @@ const pallete = {
   grey: 'rgb(132,133,135)',
   lightGrey: 'rgb(234,236,241)',
   blue: 'blue',
-  black: 'dark',
+  black: 'black',
 };
 
 export const theme = {

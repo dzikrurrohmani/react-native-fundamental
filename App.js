@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import HomePage from './src/features/Home/HomePage';
 import LoginPage from './src/features/Login/LoginPage';
 import ProductList from './src/features/Product/ProductList';
 import WelcomePage from './src/features/Welcome/WelcomePage';
@@ -19,7 +20,8 @@ export default function App() {
       <ThemeProvider>
         {/* <WelcomePage /> */}
         {/* <LoginPage/> */}
-        <ProductList />
+        {/* <ProductList /> */}
+        <HomePage/>
       </ThemeProvider>
     </DependencyProvider>
   );

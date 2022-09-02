@@ -12,23 +12,46 @@ const ProductList = () => {
   const { productService } = useDependency();
   const [product, setProduct] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [page, setPage] = useState(1);
+  const [isNext, setIsNext] = useState(true);
 
   useEffect(() => {
     onGetAllProduct();
-  }, []);
+  }, [page]);
 
   const onGetAllProduct = async () => {
     setIsFetching(true);
     try {
-      setProduct([]);
-      const response = await productService.getAllProduct();
-      setProduct(response);
+      //   setProduct([]);
+      //   const response = await productService.getAllProduct();
+      //   setProduct(response);
+      const response = await productService.getAllProduct(page);
+      if (page === 1) {
+        setProduct([...response]);
+      } else {
+        setProduct((prevState) => [...prevState, ...response]);
+      }
+      setIsFetching(false)
+      setIsNext(true)
     } catch (error) {
       console.log('Error', error);
+      setIsNext(false)
     } finally {
       setIsFetching(false);
     }
   };
+
+  const onFetchMore = async () => {
+    if (isNext){
+        setPage(prevState => prevState+1)
+    } else {
+        onGetAllProduct
+    }
+  }
+
+  const onRefresh = () => {
+    setPage(1)
+  }
 
   const renderItem = ({ item }) => {
     return <Item productName={item.productName} />;
@@ -43,8 +66,9 @@ const ProductList = () => {
             data={product}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
-            onRefresh={onGetAllProduct}
+            onRefresh={onRefresh}
             refreshing={isFetching}
+            onEndReached={onFetchMore}
           />
         </View>
       </AppBackground>

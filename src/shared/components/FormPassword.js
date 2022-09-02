@@ -20,7 +20,7 @@ const FormPassword = ({ value, onChangeValue, placeholder = '' }) => {
         <Entypo
           name={hidePass ? 'eye-with-line' : 'eye'}
           size={20}
-          color={theme.colors.foreground}
+          color={theme.color.foreground}
         />
       </Pressable>
     </View>
@@ -42,8 +42,8 @@ const styling = (theme) =>
       borderRadius: theme.radius.m,
       borderWidth: 1,
       padding: theme.spacing.s,
-      borderColor: theme.colors.foreground,
-      backgroundColor: theme.colors.secondary,
+      borderColor: theme.color.foreground,
+      backgroundColor: theme.color.secondary,
       alignItems: 'center',
     },
   });

@@ -30,8 +30,9 @@ const styling = (theme) =>
       borderWidth: 1,
       borderRadius: theme.radius.m,
       padding: theme.spacing.s,
-      backgroundColor: theme.colors.secondary,
-      borderColor: theme.colors.foreground,
+      backgroundColor: theme.color.secondary,
+      borderColor: theme.color.foreground,
+      fontFamily: 'Poppins-Regular'
     },
   });
 

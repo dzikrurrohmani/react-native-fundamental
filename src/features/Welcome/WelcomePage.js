@@ -2,7 +2,7 @@
 import { ImageBackground, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native"
 import MainContainer from "../../shared/components/MainContainer"
 import LottieView from "lottie-react-native"
-import { AppBackground } from '../../shared/components/AppBackground';
+import AppBackground from '../../shared/components/AppBackground';
 import FormButton from "../../shared/components/FormButton"
 import TitleLabel from "../../shared/components/TitleLabel"
 

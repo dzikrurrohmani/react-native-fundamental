@@ -1,8 +1,8 @@
 const pallete = {
   white: '#fff',
-  orange: 'rgb(252, 80, 40)',
-  grey: 'rgb(92, 93, 95)',
-  lightGrey: 'rgb(234, 236, 241)',
+  orange: 'rgb(252,80,40)',
+  grey: 'rgb(92,93,95)',
+  lightGrey: 'rgb(234,236,241)',
 };
 
 export const theme = {

@@ -1,71 +1,41 @@
-import LottieView from 'lottie-react-native';
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { AppBackground } from '../../shared/components/AppBackground';
-import MainContainer from '../../shared/components/MainContainer';
+import { ImageBackground, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native"
+import MainContainer from "../../shared/components/MainContainer"
+import LottieView from "lottie-react-native"
+import AppBackground from "../../shared/components/AppBackground"
+import FormButton from "../../shared/components/FormButton"
+import TitleLabel from "../../shared/components/TitleLabel"
 
-const WelcomePage = () => {
-  return (
-    <MainContainer>
-      <AppBackground
-        style={{
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-        }}
-      >
-        <LottieView
-          autoPlay
-          source={require('../../../assets/img/animation-message.json')}
-          //   style={styles.animation}
-        />
+const WelcomePage = () =>{
+    return (
+        <MainContainer>
+            <AppBackground style={{
+                justifyContent: 'space-evenly',
+                alignItems: 'center'
+            }}>
+                <LottieView 
+                    autoPlay 
+                    style={styles.image} 
+                    source={require('../../../assets/img/116822-transfer-files.json')}/>
 
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>POS System</Text>
-          <Text style={styles.subTitle}>Simple Point If Sales</Text>
-        </View>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <Text style={styles.textButton}>LOGIN</Text>
-        </TouchableOpacity>
-      </AppBackground>
-    </MainContainer>
-  );
-};
+                <View style={styles.titleContainer}>
+                    <TitleLabel text = 'POS System'/>
+                    <TitleLabel subTitle text='Simple Point of Sales'/>
+                </View>
+                <FormButton label='Sign In' onClick={()=>{}}></FormButton>
+            </AppBackground>
+        </MainContainer>
+    )
+}
 
 const styles = StyleSheet.create({
-  animation: {
-    width: 200,
-    height: 200,
-    alignItems: 'center',
-  },
-  titleContainer: {
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'blue',
-  },
-  subTitle: {
-    fontSize: 16,
-    color: 'blue',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    alignSelf: 'stretch',
-    marginHorizontal: 120,
-  },
-  textButton: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-});
+    image : {
+        width : 200,
+        height : 200,
+        alignItems : "center"
+    },
+    titleContainer : {
+        alignItems : "center"
+    }
+})
 
 export default WelcomePage;

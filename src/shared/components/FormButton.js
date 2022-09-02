@@ -15,14 +15,14 @@ const styling = (theme) =>
   StyleSheet.create({
     button: {
       alignItems: 'center',
-      backgroundColor: theme.colors.primary,
+      backgroundColor: theme.color.primary,
       padding: theme.spacing.s,
       borderRadius: theme.radius.m,
       alignSelf: 'stretch',
       margin: theme.spacing.m,
     },
     textButton: {
-      color: theme.colors.secondary,
+      color: theme.color.secondary,
     },
   });
 

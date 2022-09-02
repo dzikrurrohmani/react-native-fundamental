@@ -1,7 +1,8 @@
+
 import { ImageBackground, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native"
 import MainContainer from "../../shared/components/MainContainer"
 import LottieView from "lottie-react-native"
-import AppBackground from "../../shared/components/AppBackground"
+import { AppBackground } from '../../shared/components/AppBackground';
 import FormButton from "../../shared/components/FormButton"
 import TitleLabel from "../../shared/components/TitleLabel"
 
@@ -15,7 +16,7 @@ const WelcomePage = () =>{
                 <LottieView 
                     autoPlay 
                     style={styles.image} 
-                    source={require('../../../assets/img/116822-transfer-files.json')}/>
+                    source={require('../../../assets/img/animation-message.json')}/>
 
                 <View style={styles.titleContainer}>
                     <TitleLabel text = 'POS System'/>

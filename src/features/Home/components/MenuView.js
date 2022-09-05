@@ -3,18 +3,18 @@ import MenuItem from './MenuItem';
 
 const MenuView = () => {
   const menus = [
-    { id: '01', menu: 'Menu 01' },
-    { id: '02', menu: 'Menu 02' },
-    { id: '03', menu: 'Menu 03' },
-    { id: '04', menu: 'Menu 04' },
-    { id: '05', menu: 'Menu 05' },
-    { id: '06', menu: 'Menu 06' },
-    { id: '07', menu: 'Menu 07' },
-    { id: '08', menu: 'Menu 08' },
-    { id: '09', menu: 'Menu 09' },
-    { id: '10', menu: 'Menu 10' },
-    { id: '11', menu: 'Menu 11' },
-    { id: '12', menu: 'Menu 12' },
+    { id: '01', menu: 'Menu 01', icon:'th-list' },
+    { id: '02', menu: 'Menu 02', icon:'th-list' },
+    { id: '03', menu: 'Menu 03', icon:'th-list' },
+    { id: '04', menu: 'Menu 04', icon:'th-list' },
+    { id: '05', menu: 'Menu 05', icon:'th-list' },
+    { id: '06', menu: 'Menu 06', icon:'th-list' },
+    { id: '07', menu: 'Menu 07', icon:'th-list' },
+    { id: '08', menu: 'Menu 08', icon:'th-list' },
+    { id: '09', menu: 'Menu 09', icon:'th-list' },
+    { id: '10', menu: 'Menu 10', icon:'th-list' },
+    { id: '11', menu: 'Menu 11', icon:'th-list' },
+    { id: '12', menu: 'Menu 12', icon:'th-list' },
   ];
 
 //   const renderMenuItem = () => {
@@ -44,7 +44,7 @@ const MenuView = () => {
 //   };
 
   const renderItem = ({ item }) => {
-    return <MenuItem menu={item} />;
+    return <MenuItem menu={item}/>;
   };
 
   return (
@@ -54,9 +54,7 @@ const MenuView = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         numColumns={3}
-        //   onRefresh={onRefresh}
-        //   refreshing={isFetching}
-        //   onEndReached={onFetchMore}
+        columnWrapperStyle={{justifyContent: 'space-around'}}
       />
     </View>
   );

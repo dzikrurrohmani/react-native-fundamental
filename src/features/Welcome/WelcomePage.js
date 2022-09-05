@@ -5,8 +5,11 @@ import LottieView from "lottie-react-native"
 import AppBackground from '../../shared/components/AppBackground';
 import FormButton from "../../shared/components/FormButton"
 import TitleLabel from "../../shared/components/TitleLabel"
+import { useNavigation } from "@react-navigation/native";
+import { ROUTE } from "../../shared/constants";
 
 const WelcomePage = () =>{
+    const navigation = useNavigation();
     return (
         <MainContainer>
             <AppBackground style={{
@@ -22,7 +25,7 @@ const WelcomePage = () =>{
                     <TitleLabel text = 'POS System'/>
                     <TitleLabel subTitle text='Simple Point of Sales'/>
                 </View>
-                <FormButton label='Sign In' onClick={()=>{}}></FormButton>
+                <FormButton label='Sign In' onClick={()=>{navigation.replace(ROUTE.LOGIN)}}></FormButton>
             </AppBackground>
         </MainContainer>
     )

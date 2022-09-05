@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useTheme } from '../../../shared/context/ThemeContext';
 import { FontAwesome } from '@expo/vector-icons';
+import { useTheme } from '../../../../shared/context/ThemeContext';
 
 const PromoItem = ({promo}) => {
   const theme = useTheme();

@@ -15,8 +15,11 @@ import FormPassword from '../../shared/components/FormPassword';
 import AppBackground from '../../shared/components/AppBackground';
 import TitleLabel from '../../shared/components/TitleLabel';
 import FormButton from '../../shared/components/FormButton';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTE } from '../../shared/constants';
 
 const LoginPage = () => {
+  const navigation = useNavigation();
   const [userName, onChangeUserName] = useState('');
   const [password, onChangePassword] = useState('');
   return (
@@ -37,7 +40,12 @@ const LoginPage = () => {
             onChangeValue={onChangePassword}
             placeholder="Input Your Password"
           />
-          <FormButton label="Login" onClick={() => {}} />
+          <FormButton
+            label="Login"
+            onClick={() => {
+              navigation.replace(ROUTE.HOME);
+            }}
+          />
         </View>
       </AppBackground>
     </MainContainer>

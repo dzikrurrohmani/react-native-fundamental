@@ -1,9 +1,11 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import HomePage from './src/features/Home/HomePage';
 import LoginPage from './src/features/Login/LoginPage';
 import ProductList from './src/features/Product/ProductList';
 import WelcomePage from './src/features/Welcome/WelcomePage';
+import AppRouter from './src/navigation/AppRouter';
 import { serviceFactory } from './src/services/ServiceFactory';
 import { DependencyProvider } from './src/shared/context/DependencyContext';
 import { ThemeProvider } from './src/shared/context/ThemeContext';
@@ -18,10 +20,9 @@ export default function App() {
   return (
     <DependencyProvider services={services}>
       <ThemeProvider>
-        {/* <WelcomePage /> */}
-        {/* <LoginPage/> */}
-        {/* <ProductList /> */}
-        <HomePage/>
+        <NavigationContainer>
+          <AppRouter />
+        </NavigationContainer>
       </ThemeProvider>
     </DependencyProvider>
   );

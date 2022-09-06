@@ -1,0 +1,430 @@
+{
+  "uuid": "30aa8b80-a80b-44bb-88e6-cfa337ba0d23",
+  "lastMigration": 22,
+  "name": "Smm",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "de38b423-cb9b-4324-9d0e-443f2855d813",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "product",
+      "responses": [
+        {
+          "uuid": "2b63e9ff-c61c-4b1f-91db-781541b03ac4",
+          "body": "{\n  \"product\": \n    {\n      \"id\":\"{{faker 'datatype.uuid'}}\",\n      \"productName\":\"{{body 'productName' 'default'}}\",\n      \"productInfo\":\"{{body 'productInfo' 'default'}}\"\n    }\n\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success Create",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "productName",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            },
+            {
+              "target": "body",
+              "modifier": "productInfo",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            },
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "92ada27b-1237-4b78-96c7-94098c31d98f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "No Body",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "6c1cca17-c7f3-45c3-9f66-315bbd099727",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "No Auth Header",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "830915cd-0045-4528-9751-823f333d9bca",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "product",
+      "responses": [
+        {
+          "uuid": "4feeb22a-5db3-4f6b-8bfc-f337f8a607c7",
+          "body": "{\n  \"products\": [\n    {{#repeat 20}}\n    {\n      \"id\":\"{{faker 'datatype.number'}}\",\n      \"productName\":\"{{faker 'commerce.product'}}\",\n      \"productInfo\":\"{{faker 'commerce.productDescription'}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "All Data page 1",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            },
+            {
+              "target": "query",
+              "modifier": "pageNo",
+              "value": "1",
+              "operator": "equals",
+              "invert": false
+            },
+            {
+              "target": "query",
+              "modifier": "itemPerPage",
+              "value": "20",
+              "operator": "equals",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "cbe24870-1dc8-4bae-9e08-8b39fe3a9b5f",
+          "body": "{\n  \"products\": [\n    {{#repeat 5}}\n    {\n      \"id\":\"{{faker 'datatype.number'}}\",\n      \"productName\":\"{{faker 'commerce.product'}}\",\n      \"productInfo\":\"{{faker 'commerce.productDescription'}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 500,
+          "statusCode": 200,
+          "label": "All Data page 2",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            },
+            {
+              "target": "query",
+              "modifier": "pageNo",
+              "value": "2",
+              "operator": "equals",
+              "invert": false
+            },
+            {
+              "target": "query",
+              "modifier": "itemPerPage",
+              "value": "20",
+              "operator": "equals",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "a869e919-ec75-4cb5-8ac9-e9f196fc16b2",
+          "body": "{\n  \"products\": []\n}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "No Data",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5b52da15-7766-4745-961d-a352d34a5010",
+          "body": "{\n  \"products\": [\n    {{#repeat 25}}\n    {\n      \"id\":\"{{faker 'datatype.number'}}\",\n      \"productName\":\"{{faker 'commerce.product'}}\",\n      \"productInfo\":\"{{faker 'commerce.productDescription'}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "All Data",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "bbdbfae8-01c0-4f64-a1fe-6074e770d258",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "No Auth Header",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "43bfb89c-62d0-460a-b37d-fa2582b237b9",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "product/:id",
+      "responses": [
+        {
+          "uuid": "90fdd20b-7bb0-48f7-86f4-070afe46a250",
+          "body": "{\n  \"product\": \n    {\n      \"id\":\"{{urlParam 'id'}}\",\n      \"productName\":\"{{faker 'commerce.product'}}\",\n      \"productInfo\":\"{{faker 'commerce.productDescription'}}\"\n    }\n\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "^[1-5]$",
+              "operator": "regex",
+              "invert": false
+            },
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "f1d687c1-4eb6-40f9-988e-7b9b625bca09",
+          "body": "{\n  \"message\":\"Product not found\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": ".*",
+              "operator": "regex",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "65734e30-0181-490e-be75-e024aa262098",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "cc4d7aee-6469-4ed5-9d49-d503bb97c30a",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "143819d9-bb80-430a-a549-b440c7103505",
+          "body": "{}",
+          "latency": 1000,
+          "statusCode": 401,
+          "label": "Unauthorized login",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "3a7d23a3-af1e-4287-96e3-1e78767f1df0",
+          "body": "{\n  \"token\":\"{{faker 'datatype.uuid'}}\"\n}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "Success login with username and password",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "dona",
+              "operator": "equals",
+              "invert": false
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "1234",
+              "operator": "equals",
+              "invert": false
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "a6d3bfd4-3c96-4181-be6b-e0972efaacde",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user-info",
+      "responses": [
+        {
+          "uuid": "173ac67b-a84a-4ee6-a8cc-10c18efea2a0",
+          "body": "{\n  \"fullName\":\"{{faker 'name.firstName'}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}

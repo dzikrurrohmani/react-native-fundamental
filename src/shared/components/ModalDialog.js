@@ -1,7 +1,8 @@
-import { Button, Modal, StyleSheet, Text, View } from "react-native";
+import { Modal, StyleSheet, Text, View } from "react-native"
+import FormButton from "./FormButton"
 
 const ModalDialog = ({visible, onPress}) => {
-    return (
+    return(
         <View style={styles.mainContainer}>
             <Modal
                 visible={visible}
@@ -11,7 +12,7 @@ const ModalDialog = ({visible, onPress}) => {
                 <View style={styles.mainContainer}>
                     <View style={styles.modalContainer}>
                         <Text>Ini Modal</Text>
-                        <Button onPress={onPress} title='Dismiss'/>
+                        <FormButton label={'Dismiss'} onClick={onPress}/>
                     </View>
                 </View>
             </Modal>
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         justifyContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     modalContainer: {
         borderTopLeftRadius: 20,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
         height: '50%',
         backgroundColor: 'white',
         alignSelf: 'stretch',
-        padding: 32
+        padding: 32,
     }
 })
 

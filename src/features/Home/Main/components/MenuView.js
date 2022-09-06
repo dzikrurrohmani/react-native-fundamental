@@ -1,90 +1,61 @@
-import { FlatList, ScrollView, View } from 'react-native';
-import { theme } from '../../../../shared/Theme';
-import MenuItem from './MenuItem';
+import {FlatList, View} from "react-native";
+import { theme } from "../../../../shared/Theme";
+import MenuItem from "./MenuItem";
 
 const MenuView = () => {
-  const menus = [
-    { id: '01', menu: 'Menu 01', icon: 'th-list' },
-    { id: '02', menu: 'Menu 02', icon: 'th-list' },
-    { id: '03', menu: 'Menu 03', icon: 'th-list' },
-    { id: '04', menu: 'Menu 04', icon: 'th-list' },
-    { id: '05', menu: 'Menu 05', icon: 'th-list' },
-    { id: '06', menu: 'Menu 06', icon: 'th-list' },
-    { id: '07', menu: 'Menu 07', icon: 'th-list' },
-    { id: '08', menu: 'Menu 08', icon: 'th-list' },
-    { id: '09', menu: 'Menu 09', icon: 'th-list' },
-    { id: '10', menu: 'Menu 10', icon: 'th-list' },
-    // { id: '11', menu: 'Menu 11', icon: 'th-list' },
-    // { id: '12', menu: 'Menu 12', icon: 'th-list' },
-  ];
-
-  //   const renderMenuItem = () => {
-  //     const menuItems = [];
-  //     for (let i = 0; i < menus.length / 3; i++) {
-  //       let menu1Idx = i * 3;
-  //       let menu2Idx = i * 3 + 1;
-  //       let menu3Idx = i * 3 + 2;
-  //       if (menu2Idx >= menus.length) {
-  //         menu2Idx = null;
-  //       }
-  //       if (menu3Idx >= menus.length) {
-  //         menu3Idx = null;
-  //       }
-  //       const p = (
-  //         <View key={i} style={{ flexDirection: row }}>
-  //           <MenuItem menu={menus[menu1Idx]} />
-  //           {menu2Idx && <MenuItem menu={menus[menu2Idx]} />}
-  //           {menu3Idx && <MenuItem menu={menus[menu3Idx]} />}
-  //         </View>
-  //       );
-
-  //       menuItems.push(p);
-  //     }
-
-  //     return menuItems;
-  //   };
-
-  const renderItem = ({ item }) => {
-    return <MenuItem menu={item} />;
-  };
-
-  const renderMenuViews = () => {
-    const menuViews = [];
-    for (let i = 0; i < menus.length / 3; i++) {
-      const startIndex = i * 3;
-      const endIndex = i * 3 + 3;
-      const dataMenu = menus.slice(startIndex, endIndex);
-      let contentStyle = { flex: 1, justifyContent: 'space-around' };
-      if (dataMenu.length % 3 !== 0) {
-        contentStyle = { flex: 1 };
-      }
-      const m = (
-        <FlatList
-          key={i}
-          horizontal
-          data={dataMenu}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={contentStyle}
-        />
-      );
-      menuViews.push(m);
+    const menus = [
+        {id: 1, menu: 'Menu 1'},
+        {id: 2, menu: 'Menu 2'},
+        {id: 3, menu: 'Menu 3'},
+        {id: 4, menu: 'Menu 4'},
+        {id: 5, menu: 'Menu 5'},
+        {id: 6, menu: 'Menu 6'},
+        {id: 7, menu: 'Menu 7'},
+        {id: 8, menu: 'Menu 8'},
+        {id: 9, menu: 'Menu 9'},
+        {id: 10, menu: 'Menu 10'},
+        {id: 11, menu: 'Menu 11'},
+        // {id: 12, menu: 'Menu 12'},
+    ];
+    const renderItem = ({item}) => {
+        return <MenuItem product={item}/>
     }
-    return menuViews;
-  };
-
-  return (
-    // <View style={{ flexDirection: 'column' }}>
-    //   <FlatList
-    //     data={menus}
-    //     renderItem={renderItem}
-    //     keyExtractor={(item) => item.id}
-    //     numColumns={3}
-    //     columnWrapperStyle={{ justifyContent: 'space-around' }}
-    //   />
-    // </View>
-    <>{renderMenuViews()}</>
-  );
-};
+    const renderMenuViews = () => {
+        const menuViews = []
+        for (let i = 0; i < menus.length; i++){
+            const startIndex = (i * 3);
+            const endIndex = (i * 3 + 3);
+            const dataMenu = menus.slice(startIndex, endIndex);
+            let contentStyle = {
+                flex: 1, justifyContent: 'space-around'
+            }
+            if (dataMenu.length %3 != 0){
+                dataMenu.push({id: -1, menu: ''})
+            }
+            const m = (
+                <FlatList
+                    key={i}
+                    data={dataMenu}
+                    horizontal
+                    renderItem={renderItem}
+                    keyExtractor={item=>item.id}
+                    contentContainerStyle={contentStyle}
+                />
+            )
+            menuViews.push(m)
+        }
+        return menuViews;
+    }
+    return (
+        // <FlatList
+        //     data={menus}
+        //     renderItem={renderItem}
+        //     numColumns={3}
+        //     columnWrapperStyle={{justifyContent: 'space-around'}} keyExtractor={item => item.id}/>
+        <View style={{flex: 1, marginHorizontal: theme.spacing.m}}>
+            {renderMenuViews()}
+        </View>
+    )
+}
 
 export default MenuView;

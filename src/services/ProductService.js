@@ -1,24 +1,23 @@
-import { data } from '../data/products';
-import { sleep } from '../shared/Sleep';
+import { Data } from "../data/product"
+import { SERVICE } from "../shared/hook/constant";
+import { sleep } from "../shared/sleep"
 
-export const productService = () => {
-  const getAllProduct = async (page) => {
-    const pagePerRow = 20;
-    const startIndex = (page - 1) * pagePerRow;
-    const endIndex = page * pagePerRow;
-
-    try {
-      return await sleep((resolve, reject) => {
-        const response = data.slice(startIndex, endIndex);
-        if (response.length === 0) {
-          reject('no more data');
-        } else {
-          resolve(response);
+export const productService = ({doGet}) => {
+    const getAllProduct = async (page, itemPerPage) => {
+        try {
+            const response = await doGet({url: SERVICE.PRODUCT, params: {pageNo: page, itemPerPage: itemPerPage}})
+            // console.log('Response Product Service', response);
+            const products = response.products;
+            // console.log('Products', products);
+            if(products.length === 0){
+                throw new Error('No More Data');
+            } else {
+                return products
+            }
+        } catch (error) {
+            throw error;
         }
-      }, 1000);
-    } catch (error) {
-      throw error;
     }
-  };
-  return { getAllProduct };
-};
+    return {getAllProduct}
+}
+

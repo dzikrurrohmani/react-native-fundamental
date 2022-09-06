@@ -1,7 +1,7 @@
-import HomeRouter from '../../navigation/HomeRouter';
+import HomeRouter from "../../navigation/HomeRouter"
 
 const HomePage = () => {
-  return <HomeRouter />;
-};
+    return <HomeRouter/>
+}
 
 export default HomePage;

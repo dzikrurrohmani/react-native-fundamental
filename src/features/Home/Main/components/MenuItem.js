@@ -1,55 +1,48 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useTheme } from '../../../../shared/context/ThemeContext';
-import { FontAwesome } from '@expo/vector-icons';
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {FontAwesome} from "@expo/vector-icons";
+import {useTheme} from "../../../../shared/context/ThemeContext";
 
-const MenuItem = ({ menu }) => {
-  const theme = useTheme();
-  const styles = styling(theme);
-  return (
-    <>
-      {menu.menu === '' ? (
-        <View style={styles.baseStyle} />
-      ) : (
-        <TouchableOpacity style={{ alignItems: 'center' }}>
-          <View style={[styles.baseStyle, styles.circularMenu]}>
-            <FontAwesome
-              name={menu.icon}
-              size={24}
-              color={theme.color.primary}
-            />
-          </View>
-          <Text style={styles.textMenu}>{menu.menu}</Text>
-        </TouchableOpacity>
-      )}
-    </>
-  );
-};
-
-const styling = (theme) =>
-  StyleSheet.create({
-    baseStyle: {
-      width: 64,
-      height: 64,
-      margin: theme.spacing.s,
+const MenuItem = ({product}) => {
+    const theme = useTheme();
+    const styles = styling(theme);
+    const renderMenuItem = () => {
+        if(product.menu !== ''){
+            return (
+                <TouchableOpacity style={{alignItems: 'center'}}>
+                    <View style={styles.circularMenu}>
+                        <FontAwesome name="th-list" size={32} color="black"/>
+                    </View>
+                    <Text>{product.menu}</Text>
+                </TouchableOpacity>
+            )        
+        } else {
+            return (
+                <View style={styles.baseView}></View>
+            )
+        }
+    }
+    return (
+        <>
+            {renderMenuItem()}
+        </>
+    )
+}
+const styling = (theme) => StyleSheet.create({
+    baseView: {
+        width: 64,
+        height: 64,
+        margin: theme.spacing.s,
     },
     circularMenu: {
-      borderColor: theme.color.primary,
-      borderWidth: 2,
-      // width: 64,
-      // height: 64,
-      overflow: 'hidden',
-      justifyContent: 'center',
-      alignItems: 'center',
-      // margin: theme.spacing.s,
-      borderRadius: 32,
-    },
-    textMenu: {
-      flex: 1,
-      textAlign: 'center',
-      fontSize: 12,
-      color: theme.color.foreground,
-      fontFamily: 'Poppins-Regular',
-    },
-  });
-
-export default MenuItem;
+        width: 64,
+        height: 64,
+        borderColor: 'grey',
+        borderWidth: 2,
+        borderRadius: 32,
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 8
+    }
+})
+export default MenuItem

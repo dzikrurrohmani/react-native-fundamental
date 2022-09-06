@@ -1,48 +1,48 @@
 const pallete = {
-  white: '#fff',
-  orange: 'rgb(252,80,40)',
-  grey: 'rgb(132,133,135)',
-  lightGrey: 'rgb(234,236,241)',
-  blue: 'blue',
-  black: 'black',
-};
+    white: '#fff',
+    orange: 'rgb(252,80,40)',
+    grey: 'rgb(92,93,95)',
+    lightGrey: 'rgb(234,236,241)'
+}
 
 export const theme = {
-  background: require('../../assets/img/bg-6.jpg'),
-  color: {
-    foreground: pallete.black,
-    primary: pallete.blue,
-    secondary: pallete.lightGrey,
-    white: pallete.white,
-  },
-  spacing: {
-    xs: 6,
-    s: 8,
-    m: 16,
-    l: 24,
-    xl: 30,
-    xxl: 36,
-  },
-  radius: {
-    s: 5,
-    m: 10,
-    l: 25,
-  },
-  text: {
-    title: {
-      fontSize: 32,
-      color: pallete.black,
-      fontFamily: 'Poppins-Bold',
+    background: require('../../assets/img/bg-2.jpeg'),
+    color: {
+        foreground: pallete.grey,
+        primary: pallete.orange,
+        secondary: pallete.lightGrey,
+        white: pallete.white
     },
-    subtitle: {
-      fontSize: 16,
-      color: pallete.black,
-      fontFamily: 'Poppins-Regular',
+    spacing: {
+        xs: 4,
+        s: 8,
+        m: 16,
+        l: 32,
+        xl: 40,
     },
-    subtitle2: {
-      fontSize: 24,
-      color: pallete.black,
-      fontFamily: 'Poppins-Regular',
+    radius: {
+        xs: 2,
+        s: 5,
+        m: 10,
+        l: 25,
+        xl: 40,
     },
-  },
-};
+    text: {
+        title: {
+            fontSize: 32,
+            fontWeight: 'bold',
+            color: pallete.grey,
+            fontFamily: 'Poppins-Bold'
+        },
+        subtitle: {
+            fontSize: 16,
+            color: pallete.primary,
+            fontFamily: 'Poppins-ThinItalic'
+        },
+        subtitle2: {
+            fontSize: 24,
+            color: pallete.grey,
+            fontFamily: 'Poppins-Regular'
+        }
+    }
+}

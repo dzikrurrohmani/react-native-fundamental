@@ -17,7 +17,7 @@ import { ROUTE } from '../../shared/hook/constant';
 const WelcomePage = () => {
   const navigation = useNavigation();
   return (
-    <MainContainer>
+    <MainContainer hint='Welcome'>
       <AppBackground
         style={{
           justifyContent: 'space-evenly',
@@ -30,11 +30,11 @@ const WelcomePage = () => {
           source={require('../../../assets/img/transfer-files.json')}
         />
         <View style={styles.titleContainer}>
-          <TitleLabel text="Android OS" />
+          <TitleLabel text="POS System" />
           <TitleLabel subTitle text="Welcome" />
         </View>
         <FormButton
-          label="LOGIN"
+          label="Sign In"
           onClick={() => {
             navigation.replace(ROUTE.LOGIN);
           }}

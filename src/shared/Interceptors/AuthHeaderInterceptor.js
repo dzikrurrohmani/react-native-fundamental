@@ -1,8 +1,11 @@
-import { SERVICE } from "../hook/constant"
+import { KEY, SERVICE } from "../hook/constant"
+import { Storage } from "../Storage";
 
-export const authHeaderInterceptor = (config) => {
+export const authHeaderInterceptor = async (config) => {
+    const storage = Storage()
     if(config.url !== SERVICE.LOGIN){
-        config.headers.Authorization = 'Bearer 123';
+        const token = await storage.getData(KEY.TOKEN)
+        config.headers.Authorization = `Bearer ${token}`;
     }
     return config
 }

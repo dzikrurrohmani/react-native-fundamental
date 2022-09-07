@@ -14,9 +14,9 @@ import { View } from "react-native";
 
 const Stack = CreateStackNavigator();
 
-const AppRouter = () => {
+const AppRouter = ({initRoute=null}) => {
     const {isTokenExist} = useAuth();
-    const [initialRoute, setInitialRoute] = useState(null);
+    const [initialRoute, setInitialRoute] = useState(initRoute);
     useEffect(()=>{
         const onValidToken = async () => {
             try {
